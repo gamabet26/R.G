@@ -277,7 +277,7 @@ footer{padding:3rem 0;border-top:0.5px solid rgba(201,168,76,0.1);text-align:cen
   <div class="hero-letters">R.G.</div>
   <div class="hero-scene" id="heroScene">
     <svg id="guitarSvg" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;" viewBox="0 0 1400 700" preserveAspectRatio="xMidYMid slice">
-      <image id="guitarImg" href="https://res.cloudinary.com/dmi9wex76/image/upload/v1778265473/image_sjsa0t.png" x="570" y="30" width="260" height="640" opacity="0.75" preserveAspectRatio="xMidYMid meet"/>
+      <image id="guitarImg" href="https://res.cloudinary.com/dmi9wex76/image/upload/v1778265473/Guitarra.png" x="570" y="30" width="260" height="640" opacity="0.75" preserveAspectRatio="xMidYMid meet"/>
     </svg>
   </div>
   <div class="hero-content">
@@ -504,7 +504,7 @@ function closeLightbox(){document.getElementById('lightbox').classList.remove('o
 // ── Guitarra ──
 function loadGuitar(){try{var d=JSON.parse(localStorage.getItem('rg-guitar'));if(d&&d.src){document.getElementById('guitarImg').setAttribute('href',d.src);var p=document.getElementById('gPrev');p.innerHTML='';var img=document.createElement('img');img.src=d.src;p.appendChild(img);document.getElementById('gOpacity').value=d.opacity||75;document.getElementById('gOpVal').textContent=(d.opacity||75)+'%';document.getElementById('gWidth').value=d.width||260;document.getElementById('gWVal').textContent=(d.width||260)+'px';document.getElementById('gX').value=d.x||0;document.getElementById('gXVal').textContent=(d.x||0)+'px';document.getElementById('gY').value=d.y||0;document.getElementById('gYVal').textContent=(d.y||0)+'px';}}catch(e){}}
 function uploadGuitar(file){if(!file)return;var r=new FileReader();r.onload=function(e){var d={src:e.target.result,opacity:75,width:260,x:0,y:0};localStorage.setItem('rg-guitar',JSON.stringify(d));document.getElementById('guitarImg').setAttribute('href',e.target.result);adjustGuitar();showToast('✓ Guitarra actualizada');};r.readAsDataURL(file);}
-function removeGuitar(){localStorage.removeItem('rg-guitar');document.getElementById('guitarImg').setAttribute('href','https://res.cloudinary.com/dmi9wex76/image/upload/v1778265473/image_sjsa0t.png');adjustGuitar();}
+function removeGuitar(){localStorage.removeItem('rg-guitar');document.getElementById('guitarImg').setAttribute('href','https://res.cloudinary.com/dmi9wex76/image/upload/v1778265473/Guitarra.png');adjustGuitar();}
 function updateGuitarProp(){
   var op=parseInt(document.getElementById('gOpacity').value);
   var w=parseInt(document.getElementById('gWidth').value);
