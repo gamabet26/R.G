@@ -276,7 +276,7 @@ footer{padding:3rem 0;border-top:0.5px solid rgba(201,168,76,0.1);text-align:cen
   <div class="hero-bg"></div>
   <div class="hero-letters">R.G.</div>
   <div class="hero-scene" id="heroScene">
-    <img id="guitarImg" src="https://res.cloudinary.com/dmi9wex76/image/upload/v1778265473/image_sjsa0t.png" style="position:absolute;left:0;right:0;top:0;bottom:0;margin:auto;width:260px;max-height:90%;opacity:0.75;pointer-events:none;z-index:1;display:block;">
+    <img id="guitarImg" src="https://res.cloudinary.com/dmi9wex76/image/upload/v1778265473/image_sjsa0t.png" style="position:absolute;left:50%;top:50%;transform:translate(-50%,-55%);width:260px;opacity:0.75;pointer-events:none;z-index:1;display:block;">
   </div>
   <div class="hero-content">
     <span class="hero-eyebrow">Nuevo proyecto</span>
@@ -453,20 +453,11 @@ function adjustGuitar(){
   if(!gi)return;
   var mob=window.innerWidth<=768;
   if(mob){
-    gi.style.width=Math.round(window.innerWidth*0.55)+'px';
-    gi.style.opacity='0.7';
-    gi.style.top='auto';
-    gi.style.bottom='0';
-    gi.style.transform='translateX(-50%)';
+    gi.style.cssText='position:absolute;left:50%;top:50%;transform:translate(-50%,-55%);width:'+Math.round(window.innerWidth*0.55)+'px;opacity:0.7;pointer-events:none;z-index:1;display:block;';
   } else {
     var d=JSON.parse(localStorage.getItem('rg-guitar')||'{}');
     var w=d.width||260,x=d.x||0,y=d.y||0,op=(d.opacity||75)/100;
-    gi.style.width=w+'px';
-    gi.style.opacity=op;
-    gi.style.left='calc(50% + '+x+'px)';
-    gi.style.top=(30+y)+'px';
-    gi.style.transform='translateX(-50%)';
-    gi.style.bottom='auto';
+    gi.style.cssText='position:absolute;left:50%;top:50%;transform:translate(calc(-50% + '+x+'px), calc(-55% + '+y+'px));width:'+w+'px;opacity:'+op+';pointer-events:none;z-index:1;display:block;';
   }
 }
 window.addEventListener('resize',adjustGuitar);
