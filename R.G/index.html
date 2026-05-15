@@ -291,6 +291,34 @@ footer{padding:3rem 0;border-top:0.5px solid rgba(201,168,76,0.1);text-align:cen
     <div class="hero-divider"></div>
     <p class="hero-tagline">Rock · Indie · Guitarrista</p>
     <a href="#musica" class="btn-primary">Escuchar música</a>
+
+    <!-- CUENTA REGRESIVA -->
+    <div style="display:flex;flex-direction:column;align-items:center;gap:0.6rem;margin-top:0.5rem;">
+      <div style="font-size:0.65rem;letter-spacing:0.4em;text-transform:uppercase;color:var(--gold);opacity:0.7;">Lanzamiento</div>
+      <div id="countdown" style="display:flex;gap:1.5rem;align-items:center;">
+        <div style="text-align:center;">
+          <div id="cd-days" style="font-family:'Playfair Display',serif;font-size:clamp(2rem,5vw,3.5rem);font-weight:900;color:var(--cream);line-height:1;">00</div>
+          <div style="font-size:0.6rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold);margin-top:0.3rem;">Días</div>
+        </div>
+        <div style="font-family:'Playfair Display',serif;font-size:clamp(1.5rem,4vw,2.5rem);color:var(--gold);opacity:0.5;margin-bottom:1rem;">:</div>
+        <div style="text-align:center;">
+          <div id="cd-hours" style="font-family:'Playfair Display',serif;font-size:clamp(2rem,5vw,3.5rem);font-weight:900;color:var(--cream);line-height:1;">00</div>
+          <div style="font-size:0.6rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold);margin-top:0.3rem;">Horas</div>
+        </div>
+        <div style="font-family:'Playfair Display',serif;font-size:clamp(1.5rem,4vw,2.5rem);color:var(--gold);opacity:0.5;margin-bottom:1rem;">:</div>
+        <div style="text-align:center;">
+          <div id="cd-mins" style="font-family:'Playfair Display',serif;font-size:clamp(2rem,5vw,3.5rem);font-weight:900;color:var(--cream);line-height:1;">00</div>
+          <div style="font-size:0.6rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold);margin-top:0.3rem;">Min</div>
+        </div>
+        <div style="font-family:'Playfair Display',serif;font-size:clamp(1.5rem,4vw,2.5rem);color:var(--gold);opacity:0.5;margin-bottom:1rem;">:</div>
+        <div style="text-align:center;">
+          <div id="cd-secs" style="font-family:'Playfair Display',serif;font-size:clamp(2rem,5vw,3.5rem);font-weight:900;color:var(--cream);line-height:1;">00</div>
+          <div style="font-size:0.6rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold);margin-top:0.3rem;">Seg</div>
+        </div>
+      </div>
+      <div style="font-size:0.7rem;letter-spacing:0.25em;color:rgba(240,232,208,0.35);font-style:italic;">20 · Noviembre · 2026</div>
+      <div style="width:60px;height:1px;background:linear-gradient(to right,transparent,var(--gold),transparent);margin-top:0.3rem;"></div>
+    </div>
   </div>
   <div class="scroll-hint"><span>Scroll</span><div class="scroll-line"></div></div>
 </section>
@@ -527,6 +555,30 @@ function closeBanner(){document.getElementById('installBanner').classList.remove
 
 // ── Service Worker ──
 if('serviceWorker' in navigator){navigator.serviceWorker.register('sw.js').catch(function(){});}
+
+// ── CUENTA REGRESIVA ──
+function updateCountdown(){
+  var target=new Date('2026-11-20T00:00:00');
+  var now=new Date();
+  var diff=target-now;
+  if(diff<=0){
+    document.getElementById('cd-days').textContent='00';
+    document.getElementById('cd-hours').textContent='00';
+    document.getElementById('cd-mins').textContent='00';
+    document.getElementById('cd-secs').textContent='00';
+    return;
+  }
+  var days=Math.floor(diff/(1000*60*60*24));
+  var hours=Math.floor((diff%(1000*60*60*24))/(1000*60*60));
+  var mins=Math.floor((diff%(1000*60*60))/(1000*60));
+  var secs=Math.floor((diff%(1000*60))/1000);
+  document.getElementById('cd-days').textContent=String(days).padStart(2,'0');
+  document.getElementById('cd-hours').textContent=String(hours).padStart(2,'0');
+  document.getElementById('cd-mins').textContent=String(mins).padStart(2,'0');
+  document.getElementById('cd-secs').textContent=String(secs).padStart(2,'0');
+}
+updateCountdown();
+setInterval(updateCountdown,1000);
 
 // ── INIT ──
 loadPhotos();
